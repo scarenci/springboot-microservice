@@ -1,0 +1,45 @@
+server:
+  port: 8090
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+spring:
+  application:
+    name: catalog-microservice
+  datasource:
+    url: jdbc:h2:mem:catalog
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jackson:
+    default-property-inclusion: non-null
+    serialization:
+      fail-on-empty-beans: false
+  jpa:
+#    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect:  org.hibernate.dialect.H2Dialect
+    show-sql: true
+  h2:
+    console.enabled: true
+    console.path: /h2-console
+    console.settings.trace: false 
+  flyway:
+    url: jdbc:h2:mem:catalog
+    user: sa
+    password: password
+springdoc:
+  show-actuator: true
+  api-docs:
+    path: /catalog-microservice/v3/api-docs
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - '*'

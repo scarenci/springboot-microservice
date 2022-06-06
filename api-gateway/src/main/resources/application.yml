@@ -1,0 +1,29 @@
+server:
+  port: 8765
+eureka:
+  client:
+    service-url:
+      defaultzone: http://localhost:8761/eureka
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: catalog-microservice
+        uri: lb://catalog-microservice
+        predicates:
+        - Path=/catalog-microservice/**
+      - id: shopping-microservice
+        uri: lb://shopping-microservice
+        predicates:
+        - Path=/shopping-microservice/**
+      - id: openapi
+        uri: lb://api-gateway
+        predicates:
+        - Path=/v3/api-docs/**
+        filters:
+        - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs

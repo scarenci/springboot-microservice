@@ -1,0 +1,1 @@
+create table tb_product (id bigint not null, description varchar(1000), name varchar(400) not null, primary key (id))

@@ -1,0 +1,25 @@
+server:
+  port: 8080
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+spring:
+  application:
+    name: shopping-microservice
+  config:
+    import: optional:configserver:http://localhost:8888/
+  cloud:
+    config:
+      profile: dev
+springdoc:
+  show-actuator: true
+  api-docs:
+    path: /shopping-microservice/v3/api-docs 
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - '*'

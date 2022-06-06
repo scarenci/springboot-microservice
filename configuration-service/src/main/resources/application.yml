@@ -1,0 +1,15 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: configuration-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/rsdetoni/files-config-server
+          default-label: main
+          search-paths:          
+          - 'shopping-microservice*'
+          - 'catalog-microservice*'
+          
