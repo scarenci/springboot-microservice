@@ -32,6 +32,11 @@ spring:
     url: jdbc:h2:mem:catalog
     user: sa
     password: password
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://192.168.64.2:9411/
 springdoc:
   show-actuator: true
   api-docs:
